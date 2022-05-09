@@ -17,5 +17,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
 	Route::resource('doctors', DoctorController::class);
 
 	Route::resource('patients', PatientController::class);
+
+	// Route::get('reports/appointments', [ReportController::class, 'appointments'])
+	// ->name('reports.appointments');
+
+	// Route::get('reports/doctors', [ReportController::class, 'doctors'])
+	// ->name('reports.doctors');
+
+	// Route::get('reports/doctors/data', [ReportController::class, 'doctorsJson']);
 });
 

@@ -87,6 +87,25 @@
                             @enderror
                         </div>  
 
+                        <div class="form-group">
+                            <label for="specialties" class="control-label">
+                                Especialidad
+                            </label>
+
+                            <select id="specialty" name="specialties[]" class="form-control select2 @error('specialties') is-invalid @enderror" multiple required>                                                   
+                                @foreach($specialties as $key)
+                                    <option {{ collect(old('specialties', $doctor->specialties->pluck('id')))->contains($key->id) ? 'selected' : '' }} value="{{ $key->id }}">
+                                        {{ $key->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('specialties')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
                         <br>                        
 
                         <div>

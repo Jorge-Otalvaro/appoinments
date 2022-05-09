@@ -248,14 +248,14 @@
                         @else {{-- Pacientes --}}
 
                             <li>
-                                <a href="{{ route('home') }}">
+                                <a href="{{ route('appointments.index') }}">
                                     <i class="menu-icon ti-calendar"></i>
                                     <span class="mm-text ">{{ __('Mis citas') }}</span>
                                 </a>
                             </li>
 
                             <li>
-                                <a href="{{ route('home') }}">
+                                <a href="{{ route('appointments.create') }}">
                                     <i class="menu-icon ti-calendar"></i>
                                     <span class="mm-text ">{{ __('Reserva de cita') }}</span>
                                 </a>
@@ -298,6 +298,8 @@
     <script type="text/javascript" src="{{ asset('js/newsTicker.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/dashboard1.js') }}"></script> --}}
     <!-- end of page level js -->
+
+    @stack('scripts')
 
     @include('sweetalert::alert')
 </body>

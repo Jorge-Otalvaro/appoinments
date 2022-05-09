@@ -81,7 +81,25 @@
                             @error('phone')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
-                        </div>                       
+                        </div>    
+
+                        <div class="form-group">
+                            <label for="specialties" class="control-label">
+                                Especialidad
+                            </label>    
+
+                            <select id="specialty" name="specialties[]" class="form-control specialty selectpicker @error('specialties') is-invalid @enderror" value="{{ old('specialties') }}" multiple required>
+                                @foreach($specialties as $key)
+                                    <option value="{{ $key->id }}">{{ $key->name }}</option>
+                                @endforeach
+                            </select>
+
+                            @error('specialties')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>                   
 
                         <br>
 

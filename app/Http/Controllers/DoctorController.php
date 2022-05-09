@@ -32,7 +32,8 @@ class DoctorController extends Controller
     {
         return view('master/doctors/create', [            
             'title' => 'Doctores',
-            'subtitle' => 'Crear doctor'
+            'subtitle' => 'Crear doctor',
+            'specialties' => Speciality::all()
         ]);
     }
 
@@ -51,6 +52,8 @@ class DoctorController extends Controller
             'phone' => $request->phone,
             'role' => 'doctor'
         ]);
+
+        $doctor->specialties()->attach($request->specialties);
 
         toast('Registro creado','success','top-right');
 
@@ -83,7 +86,8 @@ class DoctorController extends Controller
         return view('master/doctors/edit', [            
             'title' => 'Editar doctor',
             'subtitle' => $doctor->name,
-            'doctor' => $doctor
+            'doctor' => $doctor,
+            'specialties' => Speciality::all()
         ]);
     }
 
@@ -97,6 +101,8 @@ class DoctorController extends Controller
         $doctor->address = $request->input('address');
         $doctor->phone = $request->input('phone');
         $doctor->save();
+
+        $doctor->specialties()->sync($request->input('specialties'));
 
         toast('Registro actualizado','success','top-right');
 

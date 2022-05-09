@@ -51,8 +51,6 @@ class ScheduleController extends Controller
 
     public function store(Request $request, WorkDay $workday)
     {
-    	// dd($request);
-
     	$active          = $request->input('active') ?: [];
         $morning_start   = $request->input('morning_start');
         $morning_end     = $request->input('morning_end');

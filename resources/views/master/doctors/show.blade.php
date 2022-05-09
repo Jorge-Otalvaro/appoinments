@@ -86,13 +86,19 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Medico</th>
+                                    <th scope="col"># ID</th>
+                                    <th scope="col">Especialidad</th>
                                     <th scope="col">Fecha</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <!--  -->
+                                @foreach($doctor->specialties as $key)
+                                    <tr>
+                                        <th scope="row">{{ $key->id }}</th>
+                                        <td>{{ $key->name }}</td>
+                                        <td>{{ $key->created_at }}</td>                               
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
 
