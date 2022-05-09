@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.guest')
 
 @section('content')
 <div class="container">
@@ -63,11 +63,16 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
+                                <input type="submit" value="{{ __('Register') }}" class="btn btn-primary btn-block"/>
                             </div>
                         </div>
+
+                        @if (Route::has('login'))
+                            <span class="float-center sign-up">Already a member ? 
+                                <a href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </span>
+                        @endif
+
                     </form>
                 </div>
             </div>

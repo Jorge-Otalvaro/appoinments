@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Speciality;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Http\Requests\StoreSpecialityRequest;
 
 class SpecialityController extends Controller
 {
@@ -15,29 +16,31 @@ class SpecialityController extends Controller
 
     public function index()
     {
-    	$results = Speciality::all();
+    	$result = Speciality::all();
 
-        return view('master/specialities/index', compact('results'));
+        return view('master/specialities/index', [            
+            'title' => 'Especialidades',
+            'subtitle' => 'Lista de especialidades',
+            'results' => $result
+        ]);
     }
 
     public function create()
     {
-        return view('master/specialities/create');
+        return view('master/specialities/create', [            
+            'title' => 'Especialidades',
+            'subtitle' => 'Crear especialidad'
+        ]);
     }
 
-    public function store(Request $request)
+    public function store(StoreSpecialityRequest $request)
     {
-        $rules = [
-            'name' => 'required|min:3'
-        ];
+        $request->validated();
 
-        $this->validate($request, $rules);
-
-        $speciality = new Speciality();
-
-        $speciality->name        = $request->input('name');
-        $speciality->description = $request->input('description');
-        $speciality->save();
+        $speciality = Speciality::create([
+            'name' => $request->name,
+            'description' => $request->description
+        ]);
 
         toast('Registro creado','success','top-right');
 
@@ -48,23 +51,27 @@ class SpecialityController extends Controller
     {
     	$speciality = Speciality::find($speciality);
 
-        return view('master/specialities/show', compact('speciality'));
+        return view('master/specialities/show', [            
+            'title' => 'Ver especialidad',
+            'subtitle' => $speciality->name,
+            'speciality' => $speciality
+        ]);
     }
 
     public function edit($speciality)
     {
     	$speciality = Speciality::find($speciality);
 
-        return view('master/specialities/edit', compact('speciality'));
+        return view('master/specialities/edit', [            
+            'title' => 'Editar especialidad',
+            'subtitle' => $speciality->name,
+            'speciality' => $speciality
+        ]);
     }
 
-    public function update(Request $request, Speciality $speciality)
+    public function update(StoreSpecialityRequest $request, Speciality $speciality)
     {
-        $rules = [
-            'name' => 'required|min:3'
-        ];
-
-        $this->validate($request, $rules);
+        $request->validated();
 
         $speciality->name        = $request->input('name');
         $speciality->description = $request->input('description');

@@ -2,89 +2,162 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <link rel="shortcut icon" href="img/favicon.ico"/>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link type="text/css" href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- end of global css -->
+    <!--page level css -->
+    <link rel="stylesheet" href="{{ asset('vendors/swiper/css/swiper.min.css') }}">
+    <link href="{{ asset('vendors/nvd3/css/nv.d3.min.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/lc_switch.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/custom.css') }}">
+    <link href="{{ asset('css/custom_css/dashboard1.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('css/custom_css/dashboard1_timeline.css') }}" rel="stylesheet"/>
 </head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+<body class="skin-default">
+
+    <div class="preloader">
+        <div class="loader_img">
+            <img src="{{ asset('img/loader.gif') }}" alt="loading..." height="64" width="64">
+        </div>
+    </div>
+
+    <header class="header" id="app">
+        <nav class="navbar navbar-static-top" role="navigation">
+
+            <a class="logo" href="{{ url('/') }}">
+                {{ config('app.name', 'Laravel') }}
+            </a>
+
+            <div class="mr-auto">
+                <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button"> 
+                    <i class="fa fa-fw ti-menu"></i>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+            </div>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+            <div class="navbar-right">
+                <ul class="nav navbar-nav">
+                   
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle padding-user d-block" data-toggle="dropdown">
+                            <!-- <img src="img/authors/avatar1.jpg" width="35" class="rounded-circle img-fluid float-left"
+                                 height="35" alt="User Image"> -->
+                            <div class="riot">
+                                <div>
+                                    {{ Auth::user()->name }}
+                                   <span><i class="fa fa-sort-down"></i></span>
+                                </div>
+                            </div>
+                        </a>
 
-                    </ul>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            <li class="user-header">
+                                <!-- <img src="img/authors/avatar1.jpg" class="rounded-circle" alt="User Image"> -->
+                                <p>{{ Auth::user()->name }}</p>
+                            </li>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('specialities.index') }}">
-                                    {{ __('Especialities') }}
+                            <li class="p-t-3">
+                                <a href="/" class="dropdown-item">
+                                    <i class="fa fa-fw ti-user"></i> My Profile 
                                 </a>
                             </li>
 
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
+                            <li role="presentation"></li>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                            <li>
+                                <a href="/" class="dropdown-item">
+                                <i class="fa fa-fw ti-settings"></i> Account Settings </a>
+                            </li>
+
+                            <li role="presentation" class="dropdown-divider"></li>
+
+                            <li class="user-footer">
+                                <div class="float-left">
+                                    <a href="/">
+                                        <i class="fa fa-fw ti-lock"></i>
+                                        Lock
+                                    </a>
+                                </div>
+
+                                <div class="float-right">
+                                    <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
+                                        <i class="fa fa-fw ti-shift-right"></i>
                                         {{ __('Logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
-                                    </form>
+                                    </form>                                    
                                 </div>
                             </li>
-                        @endguest
-                    </ul>
-                </div>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </nav>
+    </header>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>}
+    <div class="wrapper row-offcanvas row-offcanvas-left">
+        <aside class="left-side sidebar-offcanvas">
+            <section class="sidebar">
+                <div id="menu" role="navigation">
+                    <div class="nav_profile">
+                        <div class="media profile-left">
+
+                        </div>
+                    </div>
+
+                    <ul class="navigation">
+                        <li>
+                            <a href="{{ route('home') }}">
+                                <i class="menu-icon ti-desktop"></i>
+                                <span class="mm-text ">{{ __('Dashboard') }}</span>
+                            </a>
+                        </li>
+
+                        <li class="menu-dropdown">
+                            <a href="#">
+                                <i class="menu-icon ti-desktop"></i>
+                                <span>{{ __('Especialidades') }}</span>
+                                <span class="fa arrow"></span>
+                            </a>
+
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="{{ route('specialities.index') }}">
+                                        <i class=" menu-icon fa fa-fw ti-widgetized"></i>
+                                        {{ __('Lista de especialidades') }}
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="{{ route('specialities.create') }}">
+                                        <i class=" menu-icon fa fa-fw ti-widget-alt"></i>
+                                        {{ __('Crear especialidad') }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>        
+            </section>
+        </aside>
+
+        <aside class="right-side">
+            @yield('content')           
+        </aside>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
     @include('sweetalert::alert')
 </body>
