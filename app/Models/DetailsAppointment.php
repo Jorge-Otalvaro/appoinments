@@ -5,17 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Speciality extends Model
+class DetailsAppointment extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'description'
+        'appointment_id', 'justification', 'cancelled_by',
     ];
 
-    public function users()
+    public function cancelled_by()
     {
-    	return $this->belongsToMany(User::class)->withTimestamps();
+    	return $this->belongsTo(User::class);
     }
 }

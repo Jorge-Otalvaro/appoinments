@@ -5,17 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Speciality extends Model
+class WorkDay extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'description'
+        'day', 'active', 'morning_start', 'morning_end', 'afternoon_start', 'afternoon_end', 'user_id',
     ];
-
-    public function users()
-    {
-    	return $this->belongsToMany(User::class)->withTimestamps();
-    }
 }

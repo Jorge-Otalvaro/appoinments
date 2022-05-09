@@ -21,9 +21,10 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             //Campos adicionales 
+            $table->string('document')->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
-            $table->string('role');
+            $table->enum('role', ['admin', 'doctor', 'patient']);
             $table->timestamps();
         });
     }

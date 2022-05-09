@@ -20,6 +20,7 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'name',
         'email',
+        'document',
         'password',
         'address',
         'phone',
@@ -44,4 +45,44 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function specialties()
+    {
+        return $this->belongsToMany(Speciality::class)->withTimestamps();
+    }
+
+    public function asDoctorAppointments()
+    {
+        return $this->hasMany(Appointment::class, 'doctor_id');
+    }
+
+    public function attendedAppointments()
+    {
+        return $this->asDoctorAppointments()->where('status', 'Atendida');
+    }
+
+    public function canceledAppointments()
+    {
+        return $this->asDoctorAppointments()->where('status', 'Cancelada');
+    }
+
+    public function reservedAppointments()
+    {
+        return $this->asDoctorAppointments()->where('status', 'Reservada');
+    }
+
+    public function asPatientAppointments()
+    {
+        return $this->hasMany(Appointment::class, 'patient_id');
+    }
+
+    public function scopePatients($query)
+    {
+        return $query->where('role', 'patient');
+    }
+
+    public function scopeDoctors($query)
+    {
+        return $query->where('role', 'doctor');
+    }
 }

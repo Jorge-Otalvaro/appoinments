@@ -49,7 +49,7 @@ class SpecialityController extends Controller
 
     public function show($speciality)
     {
-    	$speciality = Speciality::find($speciality);
+    	$speciality = Speciality::findOrFail($speciality);
 
         return view('master/specialities/show', [            
             'title' => 'Ver especialidad',
@@ -60,7 +60,7 @@ class SpecialityController extends Controller
 
     public function edit($speciality)
     {
-    	$speciality = Speciality::find($speciality);
+    	$speciality = Speciality::findOrFail($speciality);
 
         return view('master/specialities/edit', [            
             'title' => 'Editar especialidad',
@@ -69,9 +69,9 @@ class SpecialityController extends Controller
         ]);
     }
 
-    public function update(StoreSpecialityRequest $request, Speciality $speciality)
+    public function update(Request $request, Speciality $speciality)
     {
-        $request->validated();
+        // $request->validated();
 
         $speciality->name        = $request->input('name');
         $speciality->description = $request->input('description');

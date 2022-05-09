@@ -40,9 +40,9 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Especialidad</th>
-                                <th scope="col">Medicos</th>
-                                <th scope="col">Fecha</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col"># Documento</th>
+                                <th scope="col">Correo electrónico</th>
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>
@@ -51,15 +51,15 @@
                                 <tr>
                                     <th scope="row">{{ $key->id }}</th>
                                     <td>{{ $key->name }}</td>
-                                    <td>0</td>
-                                    <td>{{ $key->created_at }}</td>
+                                    <td>{{ $key->document }}</td>
+                                    <td>{{ $key->email }}</td>
                                     <td>
-                                        <a href="{{ route('specialities.show', $key->id) }}" class="btn btn-info">Ver detalle</a>
-                                        <a href="{{ route('specialities.edit', $key->id) }}" class="btn btn-warning">Editar</a>
-                                        <a href="{{ route('specialities.destroy', $key->id) }}" class="btn btn-danger" onclick="event.preventDefault();
+                                        <a href="{{ route('patients.show', $key->id) }}" class="btn btn-info">Ver detalle</a>
+                                        <a href="{{ route('patients.edit', $key->id) }}" class="btn btn-warning">Editar</a>
+                                        <a href="{{ route('patients.destroy', $key->id) }}" class="btn btn-danger" onclick="event.preventDefault();
                                                      document.getElementById('delete-form-{{$key->id}}').submit();">Eliminar</a>    
 
-                                        <form id="delete-form-{{$key->id}}" action="{{ route('specialities.destroy', $key->id) }}" method="POST" class="d-none">
+                                        <form id="delete-form-{{$key->id}}" action="{{ route('patients.destroy', $key->id) }}" method="POST" class="d-none">
                                             @csrf
                                             @method('DELETE')
                                         </form>          

@@ -28,7 +28,7 @@ class StoreSpecialityRequest extends FormRequest
             'description' => 'max:240',
         ];
     }
-
+    
     /**
      * Get the error messages for the defined validation rules.
      *
@@ -39,10 +39,10 @@ class StoreSpecialityRequest extends FormRequest
         return [
             'name.required' => 'La especialidad es requerida',
             'name.string' => 'La especialidad tiene caracteres no permitidos',
-            'name.max' => 'El nombre de la especialidad supera el maximo permitido :max',
-            'name.min' => 'El nombre de la especialidad no supera el minimo permitido :min',
+            'name.max' => 'El nombre de la especialidad supera el maximo permitido :max carácteres',
+            'name.min' => 'El nombre de la especialidad no supera el minimo permitido :min carácteres',
             'name.unique' => 'El nombre de la especialidad ya se encuentra registrado',
-            'description.max' => 'La descripción de la especialidad supera el maximo permitido :max'
+            'description.max' => 'La descripción de la especialidad supera el maximo permitido :max carácteres'
         ];
     }
 }
