@@ -35,6 +35,7 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password',
         'remember_token',
+        'pivot'
     ];
 
     /**
@@ -48,7 +49,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function specialties()
     {
-        return $this->belongsToMany(Speciality::class, 'speciality_user', 'user_id', 'specialty_id')->withTimestamps();
+        return $this->belongsToMany(Speciality::class)->withTimestamps();
     }
 
     public function asDoctorAppointments()

@@ -10,10 +10,16 @@ class Appointment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'specialty_id', 'doctor_id', 'patient_id', 'schedule_date', 'schedule_time', 'type', 'description',
+        'speciality_id', 
+        'doctor_id', 
+        'patient_id', 
+        'schedule_date', 
+        'schedule_time', 
+        'type', 
+        'description',
     ];
     
-    public function specialty()
+    public function speciality()
     {
     	return $this->belongsTo(Speciality::class);
     }
@@ -33,7 +39,7 @@ class Appointment extends Model
         return $this->hasOne(DetailsAppointment::class);
     }
 
-    public function getScheduledTime12Attribute()
+    public function getScheduledTimeAttribute()
     {
     	return (new Carbon($this->schedule_time))->format('g:i A');
     }

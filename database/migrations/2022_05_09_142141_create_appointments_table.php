@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('specialty_id');
-            $table->foreign('specialty_id')->references('id')->on('specialities');
+            $table->unsignedBigInteger('speciality_id');
+            $table->foreign('speciality_id')->references('id')->on('specialities');
 
             $table->unsignedBigInteger('doctor_id');
             $table->foreign('doctor_id')->references('id')->on('users');

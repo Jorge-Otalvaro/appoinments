@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Appointment;
+use App\Interfaces\ScheduleServiceInterface;
+use App\Http\Requests\Schedule\StoreRequest;
 
 class JsonScheduleController extends Controller
 {

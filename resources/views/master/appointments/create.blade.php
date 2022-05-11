@@ -44,14 +44,14 @@
                                     Especialidad
                                 </label>   
 
-                                <select id="specialty" name="specialty_id" class="form-control @error('specialty_id') is-invalid @enderror" required>
+                                <select id="specialty" name="speciality_id" class="form-control @error('speciality_id') is-invalid @enderror" required>
                                     <option value="">Seleccione una especialidad</option>
                                     @foreach($specialties as $key)
-                                        <option value="{{ $key->id }}" @if(old('specialty_id') == $key->id) selected @endif>{{ $key->name }}</option>
+                                        <option value="{{ $key->id }}" @if(old('speciality_id') == $key->id) selected @endif>{{ $key->name }}</option>
                                     @endforeach
                                 </select>
 
-                                @error('specialty_id')
+                                @error('speciality_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -175,7 +175,6 @@
         </div>
     </div>
 </section>
-
 @endsection
 
 @push('scripts')    

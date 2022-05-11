@@ -273,32 +273,8 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    {{-- <!-- begining of page level js -->
-    <!--Sparkline Chart-->
-    <script type="text/javascript" src="{{ asset('js/custom_js/sparkline/jquery.flot.spline.js') }}"></script>
-    <!-- flip --->
-    <script type="text/javascript" src="{{ asset('js/flip.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/lc_switch.min.js') }}"></script>
-    <!--flot chart-->
-    <script type="text/javascript" src="{{ asset('js/flot/js/jquery.flot.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/flot/js/jquery.flot.resize.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/flot/js/jquery.flot.stack.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/flotspline/js/jquery.flot.spline.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/flottooltip/js/jquery.flot.tooltip.js') }}"></script>
-    <!--swiper-->
-    <script type="text/javascript" src="{{ asset('vendors/swiper/js/swiper.min.js') }}"></script>
-    <!--chartjs-->
-    <script src="{{ asset('vendors/chartjs/js/Chart.js') }}"></script>
-    <!--nvd3 chart-->
-    <script type="text/javascript" src="{{ asset('js/nvd3/d3.v3.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('vendors/nvd3/js/nv.d3.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('vendors/moment/js/moment.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/newsTicker.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/dashboard1.js') }}"></script> --}}
-    <!-- end of page level js -->
-
+    <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
+    
     @stack('scripts')
 
     @include('sweetalert::alert')

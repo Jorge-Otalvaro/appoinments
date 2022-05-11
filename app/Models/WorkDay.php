@@ -10,6 +10,12 @@ class WorkDay extends Model
     use HasFactory;
 
     protected $fillable = [
-        'day', 'active', 'morning_start', 'morning_end', 'afternoon_start', 'afternoon_end', 'user_id',
+        'day', 
+        'active', 
+        'morning_start', 
+        'morning_end', 
+        'afternoon_start', 
+        'afternoon_end', 
+        'user_id',
     ];
 }

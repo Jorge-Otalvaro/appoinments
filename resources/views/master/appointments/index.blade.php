@@ -59,7 +59,7 @@
                                     <th scope="row">{{ $key->id }}</th>
                                     <td>{{ $key->schedule_date }}</td>
                                     <td>{{ $key->schedule_time }}</td>
-                                    <td>{{ $key->specialty->name }}</td>
+                                    <td>{{ $key->speciality->name }}</td>
                                     @if(auth()->user()->role == 'doctor' || auth()->user()->role == 'admin')
                                         <th scope="row">{{ $key->patient->name }}</th>
                                     @elseif(auth()->user()->role == 'patient')
@@ -121,3 +121,8 @@
 </section>
 
 @endsection
+
+@push('scripts')  
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>  
+    <script src="{{ asset('js/alerts/alerts.js') }}" type="text/javascript"></script>
+@endpush
